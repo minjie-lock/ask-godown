@@ -1,5 +1,1 @@
-import createGodown from './create-godown'
-
-export {
-  createGodown,
-}
+export { default as createGodown } from './create-godown';
