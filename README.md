@@ -1,6 +1,6 @@
 # ask-godown
 
-#### 轻量的集中状态管理库
+_轻量的集中状态管理库_
 
 ```ts
 import { createGodown } import 'ask-godown'
