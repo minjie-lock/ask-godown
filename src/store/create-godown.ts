@@ -1,10 +1,10 @@
-import { useSyncExternalStore } from "react";
+import { useSyncExternalStore } from 'react';
 
 type SetFn<S> = (state: S) => ({}) | S;
 
 type GetFn<S> = () => S;
 
-type OnSetFn<S> = <R extends SetFn<S>>(callback: R) => void;
+type OnSetFn<S> = <R extends (SetFn<S> | S)>(godown: R) => void;
 
 type IdentifierFn<S> = (
   set: OnSetFn<S>,
@@ -36,12 +36,15 @@ export default function createGodown
 
   let listeners: Listeners = [];
 
-  const set: OnSetFn<R> = (callback) => {
-    const store = callback(map.get('godown'))
+  const set: OnSetFn<R> = (godown) => {
+    const store = typeof godown === 'function' ? 
+    godown(map.get('godown')) : godown;
+
     map.set('godown', {
       ...(store ?? {}),
       ...map.get('godown')
-    })
+    });
+    
     for (const fn of listeners) {
       fn();
     }
