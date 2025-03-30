@@ -1,7 +1,7 @@
 {
   "name": "ask-godown",
   "private": false,
-  "version": "1.0.6",
+  "version": "1.0.7",
   "type": "module",
   "main": "./dist/ask-godown.cjs",
   "module": "./dist/ask.js",
